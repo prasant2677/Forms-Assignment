@@ -1,0 +1,35 @@
+<div style="text-align: center;">
+    <h3>Please Login!!!</h3></div>
+    <div class="col-md-4 offset-4 mt-4 card">
+       
+        <div class="card-body">
+    <form #loginForm='ngForm'>
+        <div class="form-group">
+          <label for="email">Email address</label>
+          <input type="email" name="email" id="email" #email= 'ngModel' ngModel 
+          class="form-control" required email minlength="10" pattern ="^(.+)@(.+)$">
+          <div *ngIf='email.touched && email.invalid'>
+            <div *ngIf='email.errors.required' class="alert alert-danger">This field is mandatory</div>
+            <div *ngIf='email.errors.minlength' class="alert alert-danger">This field accepts minimum 10 characters</div>
+            <div *ngIf='email.errors.pattern' class="alert alert-danger">This field accepts only email</div>
+          </div>
+          
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" name = "password" class="form-control" id="password" #password='ngModel' ngModel
+          required password minlength="8" pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{8,20})">
+          <div *ngIf='password.touched && password.invalid'>
+            <div *ngIf='password.errors.required' class="alert alert-danger">This field is mandatory</div>
+            <div *ngIf='password.errors.minlength' class="alert alert-danger">This field accepts minimum 8 characters</div>
+            <div *ngIf='password.errors.password' class="alert alert-danger">This field accepts only password</div>
+            <div *ngIf='password.errors.pattern' class="alert alert-danger">This field accepts atleast one uppercase , one symbol, and a numerical</div>
+
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary"
+       (click)='submitForm(loginForm)' [disabled] = 'loginForm.invalid' >
+        Submit</button>
+      </form>
+      </div>
+      </div>
